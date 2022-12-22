@@ -8,13 +8,10 @@ from typing import List, Optional
 def next(path_to_csv: str, count: int) -> Optional[List[str]]:
     with open(path_to_csv + '/lab3/dataset.csv', 'r', encoding='utf-8') as csvfile:
         file_reader = list(csv.reader(csvfile))
-        print("wtf")
         if file_reader[count] is None:
             return None
-            print("di")
         else:
             return file_reader[count]
-            print("d")
 
 
 def work_0(date: datetime.date,  path_to_csv: str=os.path.join("C:/", "Users", "79171", "PyCharmProjects")) -> str:
@@ -28,9 +25,8 @@ def work_0(date: datetime.date,  path_to_csv: str=os.path.join("C:/", "Users", "
                 tmp = tmp.replace("]", "")
                 tmp = tmp.replace("'", "")
                 return tmp
-                print("hax")
+                
         else:
-            print("biba")
             return None
 
 
@@ -59,7 +55,7 @@ def work_2(date: datetime.date,  path_to_csv: str=os.path.join("C:/", "Users", "
     ways = os.listdir(path_to_csv)
     date = str(date)
     for i in range(len(ways)):
-        if (ways[i][:4] == date[:4]):  # Ищем файл у которого аткой же год
+        if (ways[i][:4] == date[:4]):
             with open(path_to_csv + "/"+ ways[i], 'r', encoding='utf-8') as csvfile:
                 file_reader = csv.reader(csvfile)
                 for row in file_reader:
@@ -99,7 +95,6 @@ def work_3(date: datetime.date,  path_to_csv: str=os.path.join("C:/", "Users", "
 
 
 def run_4(path_to_csv: str=os.path.join("C:/", "Users", "79171", "PyCharmProjects")) -> None:
-    '''Основная функция работы скрипта'''
     date = datetime.date()
     print(work_0(date, path_to_csv))
     print(work_1(date, path_to_csv))

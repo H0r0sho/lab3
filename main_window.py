@@ -48,7 +48,26 @@ class Window2(QWidget):
         self.b2_4.move(170, 340)
         self.b2_4.clicked.connect(lambda: self.findbydataset(date))
 
-   
+
+def findbydatedata(self, date: datetime.date) -> None:
+    tmp = s41.work_1(date)
+    QMessageBox.about(self, "Информация по дате", f"Дата: {date} \nДанные : {tmp}")
+
+
+def findbyyears(self, date: datetime.date) -> None:
+    tmp = s41.work_2(date)
+    QMessageBox.about(self, "Информация по дате", f"Дата: {date} \nДанные : {tmp}")
+
+
+def findbyweek(self, date: datetime.date) -> None:
+    tmp = s41.work_3(date)
+    QMessageBox.about(self, "Информация по дате", f"Дата: {date} \n Данные : {tmp}")
+
+
+def findbydataset(self, date: datetime.date) -> None:
+    tmp = s41.work_0(date)
+    QMessageBox.about(self, "Информация по дате", f"Дата: {date} \nДанные : {tmp}")
+
 
 class Window(QMainWindow):
 
