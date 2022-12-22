@@ -11,6 +11,45 @@ import s21
 import s31
 import s41
 
+
+class Window2(QWidget):
+    def __init__(self, date: datetime.date, path_to_csv: os.path ) -> None:
+        super().__init__()
+
+        self.setGeometry(500, 500, 500, 500)
+        self.background_2 = QLabel(self)
+        self.fire = QLabel(self)
+        self.setWindowTitle('Выбор файла')
+
+        self.base = QtWidgets.QLabel(self)
+        self.base.setFont(QtGui.QFont("Times", 11, QtGui.QFont.Light))
+        self.base.setText("Найти данные в файле по...")
+        self.base.move(100, 10)
+        self.base.setStyleSheet("background-color: white; border: 1px solid black;")
+        self.base.adjustSize()
+
+        self.b2_1 = QPushButton('Дата/Данные', self)
+        self.b2_1.resize(150, 80)
+        self.b2_1.move(170, 100)
+        self.b2_1.clicked.connect(lambda: self.findbydate_data(date))
+
+        self.b2_2 = QPushButton('Годам', self)
+        self.b2_2.resize(150, 80)
+        self.b2_2.move(170, 180)
+        self.b2_2.clicked.connect(lambda: self.findbyyears(date))
+
+        self.b2_3 = QPushButton('Неделям', self)
+        self.b2_3.resize(150, 80)
+        self.b2_3.move(170, 260)
+        self.b2_3.clicked.connect(lambda: self.findbyweek(date))
+
+        self.b2_4 = QPushButton('dataset', self)
+        self.b2_4.resize(150, 80)
+        self.b2_4.move(170, 340)
+        self.b2_4.clicked.connect(lambda: self.findbydataset(date))
+
+   
+
 class Window(QMainWindow):
 
     def __init__(self) -> None:
@@ -77,9 +116,9 @@ class Window(QMainWindow):
         check, check_value = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"], ["0", "1", "3", "4", "6", "7", "8", "9"]
         if  len(text) != 10: return False
         for i in range(len(check_value)):
-            for j in range(len(check)):
+           for j in range(len(check)):
                 if text[int(check_value[i])] == check[j]: Flag = True
-            if Flag == False: return False
+           if Flag == False: return False
         if (0 <= int(text[0:2]) <= 31 and 0 <= int(text[3:5]) <= 12 and 1992 <= int(text[6:10]) <= 2022): return True
         else: return False
 
@@ -96,7 +135,9 @@ class Window(QMainWindow):
             else:  QMessageBox.about(self, "warning!\n", "Неправильный формат входных данных...")
 
 
-
+    def show_window_2(self, date: datetime.date) -> None:
+        self.w2 = Window2(date, path_to_csv = os.path.join("C:/", "Users", "79171", "PyCharmProjects", "lab3"))
+        self.w2.show()
 
 def application() -> None:
     app = QApplication(sys.argv)
